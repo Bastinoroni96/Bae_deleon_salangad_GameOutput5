@@ -1,26 +1,27 @@
 [gd_scene load_steps=8 format=3 uid="uid://di0c017osylss"]
 
-[ext_resource type="Script" path="res://Scene/enemy.gd" id="1_n1jn8"]
-[ext_resource type="Script" path="res://Scene/HitArea.gd" id="2_kf04q"]
+[ext_resource type="Script" path="res://Script/enemy.gd" id="1_n1jn8"]
+[ext_resource type="Script" path="res://Script/HitArea.gd" id="2_kf04q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6nsaa"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_d0ho5"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r88e"]
-albedo_color = Color(0.859892, 0.70285, 0.780454, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ub50k"]
+albedo_color = Color(1, 0, 0.215686, 1)
 emission = Color(0.564535, 0.988751, 0.792158, 1)
 emission_energy_multiplier = 8.0
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xc45i"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_07p85"]
 direction = Vector3(0, 0, 1)
+spread = 130.263
 angular_velocity_min = -1.60933e-05
 angular_velocity_max = -1.60933e-05
-radial_velocity_min = 2.99998
-radial_velocity_max = 4.99998
+radial_velocity_min = 4.99998
+radial_velocity_max = 9.99998
 
-[sub_resource type="BoxMesh" id="BoxMesh_mu4ge"]
-size = Vector3(0.1, 0.1, 0.1)
+[sub_resource type="BoxMesh" id="BoxMesh_qy4mc"]
+size = Vector3(0.15, 0.15, 0.15)
 
 [node name="Enemy" type="Node3D"]
 script = ExtResource("1_n1jn8")
@@ -33,18 +34,19 @@ script = ExtResource("2_kf04q")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_6nsaa")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 layers = 512
 mesh = SubResource("BoxMesh_d0ho5")
+skeleton = NodePath("../..")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.521212)
-layers = 512
-material_override = SubResource("StandardMaterial3D_2r88e")
+material_override = SubResource("StandardMaterial3D_ub50k")
 emitting = false
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_xc45i")
-draw_pass_1 = SubResource("BoxMesh_mu4ge")
+randomness = 0.3
+process_material = SubResource("ParticleProcessMaterial_07p85")
+draw_pass_1 = SubResource("BoxMesh_qy4mc")
 
 [connection signal="got_hit" from="Area3D" to="." method="_on_area_3d_got_hit"]
