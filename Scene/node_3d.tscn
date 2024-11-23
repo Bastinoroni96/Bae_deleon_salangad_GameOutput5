@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1hjwgdk1bss2"]
+[gd_scene load_steps=17 format=3 uid="uid://c1hjwgdk1bss2"]
 
 [ext_resource type="Material" uid="uid://cntsmcyc3mkop" path="res://Assets/material/ground.tres" id="1_1ax5c"]
 [ext_resource type="Script" path="res://Script/world.gd" id="1_4bps2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://drnj14n03hpft" path="res://Assets/material/wall.tres" id="2_ekcyk"]
 [ext_resource type="Texture2D" uid="uid://b5o5rp58amkmv" path="res://Assets/crosshair102.png" id="5_epxhd"]
 [ext_resource type="Texture2D" uid="uid://bumkcv4obvuii" path="res://Assets/crosshair101.png" id="6_5iq3d"]
+[ext_resource type="PackedScene" uid="uid://di0c017osylss" path="res://Scene/enemy.tscn" id="7_fxpy0"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_c2n74"]
 
@@ -60,6 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33121, 1.48279, 0)
 [node name="CSGMesh3D" type="CSGMesh3D" parent="wall"]
 transform = Transform3D(0.290721, 0, 0, 0, 3.03948, 0, 0, 0, 6.56206, 0, 0, 0)
 material_override = ExtResource("2_ekcyk")
+use_collision = true
 mesh = SubResource("BoxMesh_50ttm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wall"]
@@ -108,3 +110,6 @@ offset_top = 33.0
 offset_right = 96.0
 offset_bottom = 97.0
 texture = ExtResource("6_5iq3d")
+
+[node name="Enemy" parent="." instance=ExtResource("7_fxpy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68084, 2.10735, 8.43633)

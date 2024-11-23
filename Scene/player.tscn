@@ -31,15 +31,19 @@ target_position = Vector3(0, 0, -1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0543232, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_ulawv")
 
 [node name="CamRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.941412, 0.33726, 0, -0.33726, 0.941412, 0, 0, 0)
+visible = false
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CamRoot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18306, 0.944126, 0.812816)
+visible = false
 spring_length = 3.0
 margin = 0.5
 
 [node name="Camera3D" type="Camera3D" parent="CamRoot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24188, 0.289689, 0.75271)
+visible = false
