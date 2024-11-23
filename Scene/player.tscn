@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://n8mivy5bxjiw"]
+[gd_scene load_steps=6 format=3 uid="uid://n8mivy5bxjiw"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_akq81"]
+[ext_resource type="ArrayMesh" uid="uid://k5we4nqfft76" path="res://Assets/rifle.obj" id="2_4kbec"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7p1yt"]
 
@@ -9,6 +10,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulawv"]
 
 [node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.308554, 0, 0)
 script = ExtResource("1_akq81")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -18,16 +20,26 @@ mesh = SubResource("CapsuleMesh_7p1yt")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.382, -0.392)
 mesh = SubResource("SphereMesh_on8xd")
 
+[node name="rifle" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.591313, 0.299817, -0.29061)
+mesh = ExtResource("2_4kbec")
+skeleton = NodePath("../..")
+
+[node name="RayCast3D" type="RayCast3D" parent="MeshInstance3D/rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55651e-06, 1.49012e-08, -0.480675)
+target_position = Vector3(0, 0, -1)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0543232, 0)
 shape = SubResource("CapsuleShape3D_ulawv")
 
 [node name="CamRoot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.582, 0)
+transform = Transform3D(1, 0, 0, 0, 0.941412, 0.33726, 0, -0.33726, 0.941412, 0, 0, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CamRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336498, 0, 0)
-spring_length = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18306, 0.944126, 0.812816)
+spring_length = 3.0
 margin = 0.5
 
 [node name="Camera3D" type="Camera3D" parent="CamRoot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24188, 0.289689, 0.75271)

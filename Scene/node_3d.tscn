@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1hjwgdk1bss2"]
+[gd_scene load_steps=16 format=3 uid="uid://c1hjwgdk1bss2"]
 
-[ext_resource type="Material" uid="uid://cntsmcyc3mkop" path="res://material/ground.tres" id="1_1ax5c"]
+[ext_resource type="Material" uid="uid://cntsmcyc3mkop" path="res://Assets/material/ground.tres" id="1_1ax5c"]
+[ext_resource type="Script" path="res://Script/world.gd" id="1_4bps2"]
 [ext_resource type="PackedScene" uid="uid://n8mivy5bxjiw" path="res://Scene/player.tscn" id="1_07dwk"]
-[ext_resource type="Material" uid="uid://drnj14n03hpft" path="res://material/wall.tres" id="2_ekcyk"]
+[ext_resource type="Material" uid="uid://drnj14n03hpft" path="res://Assets/material/wall.tres" id="2_ekcyk"]
+[ext_resource type="Texture2D" uid="uid://b5o5rp58amkmv" path="res://Assets/crosshair102.png" id="5_epxhd"]
+[ext_resource type="Texture2D" uid="uid://bumkcv4obvuii" path="res://Assets/crosshair101.png" id="6_5iq3d"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_c2n74"]
 
@@ -29,6 +32,7 @@ size = Vector3(0.361734, 3.05457, 6.58267)
 [sub_resource type="BoxMesh" id="BoxMesh_gx7vh"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_4bps2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.821564, -0.316295, 0.474331, -0.5, -3.78552e-08, 0.866025, -0.273919, -0.948661, -0.158148, 0, 2.46457, -4.7009)
@@ -73,3 +77,34 @@ mesh = SubResource("BoxMesh_gx7vh")
 
 [node name="Player" parent="." instance=ExtResource("1_07dwk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29694, 1.472, -0.584803)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Crosshair" type="TextureRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_epxhd")
+
+[node name="CrosshairHit" type="TextureRect" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 33.0
+offset_right = 96.0
+offset_bottom = 97.0
+texture = ExtResource("6_5iq3d")
